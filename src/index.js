@@ -3,7 +3,7 @@ const body = document.querySelector("body");
 const color = ["#2EE6D6", "#36D96F", "#C3E62E"];
 
 h1.style.color = "white";
-// body.style.backgroundColor = "#2EE6D6";
+body.style.backgroundColor = "#2EE6D6";
 
 window.addEventListener("resize", function() {
     let winWidth = window.innerWidth;
