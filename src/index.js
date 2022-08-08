@@ -1,18 +1,36 @@
-const h1 = document.querySelector("h1");
-const body = document.querySelector("body");
-const color = ["#2EE6D6", "#36D96F", "#C3E62E"];
+const maxNum = document.querySelector("#maxNum");
+const guessNum = document.querySelector("#guessNum");
+const btnPlay = document.querySelector("#btnPlay");
+const textRes = document.querySelector("p");
 
-h1.style.color = "white";
-body.style.backgroundColor = "#2EE6D6";
+btnPlay.addEventListener("click", function(e) {
+    // e.preventDefault();
+    const maxNumber = Number(maxNum.value);
+    const guessNumer = Number(guessNum.value);
+    
+    if(maxNumber > 0 && guessNumer > 0) {
+        if(maxNumber < guessNumer) {
+            alert(`Please enter a number less then ${maxNumber}.`);
+            
+        } else {
+            //랜덤 숫자
+            let randomNum;
+            randomNum = Math.ceil(Math.random() * maxNumber);
+            randomNum = Number(randomNum);
+            // console.log(typeof(randomNum));
 
-window.addEventListener("resize", function() {
-    let winWidth = window.innerWidth;
-    //console.log(winWidth);
-    if(winWidth <= 800){
-        body.style.backgroundColor = color[0];
-    } else if(winWidth > 800 && winWidth <= 1500) {
-        body.style.backgroundColor = color[1];
-    } else if(winWidth > 1500) {
-        body.style.backgroundColor = color[2];
+            textRes.innerHTML = `You chose: ${guessNumer}, the machine chose: ${randomNum}.<br>`;
+            textRes.style.fontSize = "20px";
+
+            if(guessNumer === randomNum) {
+                textRes.innerHTML += `<strong>You won!</strong>`;
+            } else {
+                textRes.innerHTML += `<strong>You lost!</strong>`;
+            }
+        }
+        
+    } else {
+        alert("Please enter a number greater then 0.");
     }
+    
 });
